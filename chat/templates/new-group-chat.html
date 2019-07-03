@@ -1,0 +1,39 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}CheChat - New group chat{% endblock title %}
+{% block activity_title %}New group chat{% endblock activity_title %}
+{% block current_page_menu %}menu-newgroup{% endblock current_page_menu %}
+
+{% block main_container %}
+    {% if len_addable == 0 %}
+        <h4 style="margin:20px">There are no contacts. Click on 'Add New'.</h4>
+    {% endif %}
+
+    <form action='/create_group/' method="post">
+        {% for user in users %}
+            <div class="card-main">
+                <div class="img" style="background:url(https://profile.actionsprout.com/default.jpeg)"></div>
+                <div class="item-container container-contacts">
+                    <h4 class="h4-contacts">
+                        <b>{{ user.username }}</b>
+                        {% csrf_token %}
+                    </h4>
+                    <input type="checkbox" class="select_user_checkbox" name="participants" value="{{ user.username }}">
+                </div>
+            </div>
+        {% endfor %}
+        <div style="width: 100%; height:61px"></div>
+
+        <div id="input-bar" style="display: inline-flex;">
+                <div style="flex-grow: 100">
+                    <input type="text"
+                       name="chat_name_input"
+                       id="chat_name_input"
+                       style="width:100%; height: 100%; border: none; font-size: 20px; padding: 20px;"
+                       placeholder="Insert the group name">
+                </div>
+             <button class="btn btn-primary button-contacts"  id="new-group-bottom-btn"   type="submit">Chat</button>
+        </div>
+    </form>
+
+{% endblock main_container %}

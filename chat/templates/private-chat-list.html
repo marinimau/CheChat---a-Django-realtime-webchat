@@ -1,0 +1,34 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}CheChat - Direct Chats{% endblock title %}
+{% block activity_title %}Direct chats{% endblock activity_title %}
+{% block current_page_menu %}menu-privatechats{% endblock current_page_menu %}
+
+{% block main_container %}
+    {% if len_chats == 0 %}
+        <h4 style="margin:20px">There are no active chats.</h4>
+    {% endif %}
+
+    {% for private_chat in private_chats %}
+        <form name="begin_chat{{ private_chat.id_chat }}" action='/private_chat/' method="post" style="cursor:pointer">
+            <div class="card-main" onclick="document.forms['begin_chat{{ private_chat.id_chat }}'].submit();">
+                <div class="img" style="background:url(https://profile.actionsprout.com/default.jpeg)"></div>
+                <div class="item-container container-contacts">
+                    <h4 class="h4-contacts">
+                        <b>
+                            {% if private_chat.participant1 == user %}
+                                {{ private_chat.participant2 }}
+                            {% elif private_chat.participant2 == user %}
+                                {{ private_chat.participant1 }}
+
+                            {% endif %}
+                        </b>
+                        <input type="hidden" name="id_chat" value="{{ private_chat.id_chat }}">
+                        {% csrf_token %}
+                    </h4>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+
+{% endblock main_container %}

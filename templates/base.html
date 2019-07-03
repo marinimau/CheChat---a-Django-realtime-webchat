@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--meta-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--end meta-->
+    {% load static %}
+    <!--style imports-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/form.css" %}" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--end style imports-->
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {% block single_page_head %}{% endblock single_page_head %}
+
+    <title>{% block title %}CheChat{% endblock title %}</title>
+
+</head>
+<body>
+
+    <!--preloader-->
+    <div id="preloader"></div>
+    <!--end preloader-->
+
+    <!--sidebar-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-xlarge w3-animate-left" style="width:200px;" id="mySidebar">
+        <div id="left-gradient"></div>
+        <div id="logo"></div>
+
+        <!--navigation goes here-->
+        {% block navigation %}{% endblock navigation %}
+        <!--end navigation-->
+
+        <!--copyright content-->
+        <div class="copyright">
+            <p>copyright &copy; 2019 - CheChat - 65324 65377 65424 65354</p>
+        </div>
+        <!--end copyright-->
+
+    </div>
+    <!--end sidebar-->
+
+    <!--site-->
+    <div class="w3-main" style="margin-left:200px; z-index:2;">
+       {% block site %}{% endblock site %}
+    </div>
+    <!--end site-->
+
+    <!--scripts-->
+    <script type="text/javascript" src="{% static "js/HideAppbarOnScroll.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/HidePreloader.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/SidebarResponsive.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/SelectCurrentWindowInNavigation.js" %}"></script>
+    <!--end scripts-->
+    <script>
+        $(function() {
+             selectMenuItem("{% block current_page_menu %}menu-login{% endblock current_page_menu %}");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+/*-------------------------------------------------------------*
+ *  CheChat
+ *-------------------------------------------------------------*
+ *  1. General
+ *  2. Preloader
+ *  3. Sidebar
+ *      3.0 Left-Gradient
+ *      3.1 Logo
+ *      3.2 Navigation
+ *          3.2.1 Navigation > Current User
+ *      3.3 Copyright
+ *  4. Teal
+ *  5. Main Content
+ *      5.0 Container
+ *      5.1 Card
+ *      5.2 Background Page
+ *      5.3 Login/registration page
+ *  6. Contacts
+ *  7. Chat page
+ *  8. Responsive
+ *--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------*
+ *
+ *  1. General
+ *
+ *--------------------------------------------------------------*/
+input:focus {
+    border: none;
+}
+
+h1, h2, h3, h4, p {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+html, body {
+    height: 100%;
+    transition: all 0.5s;
+    background: #f8fafb;
+    scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------*
+ *
+ *  2. Preloader
+ *
+ *--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 999;
+    background-color: #f8fafb;
+    background-image: url(../assets/logo.svg);
+    background-repeat: no-repeat;
+    background-size: 200px auto;
+    background-position: center center;
+}
+
+/*--------------------------------------------------------------*
+ *
+ *  3.  Sidebar
+ *
+ *--------------------------------------------------------------*/
+.w3-sidebar {
+    border: none;
+    color: #82829c;
+    position: fixed;
+    height: 100vh;
+    background: #fff !important;
+    overflow-x: hidden !important;
+    box-shadow: none !important;
+    border-right: solid 1px #e0e7ef;
+    z-index: 9 !important;
+}
+
+/*--------------------------------------------------------------*
+ *  3.0  Left Gradient
+ *--------------------------------------------------------------*/
+#left-gradient {
+    position: fixed;
+    width: 5px;
+    height: 100vh;
+    background: #272938;
+}
+
+/*--------------------------------------------------------------*
+ *  3.1  Sidebar Logo
+ *--------------------------------------------------------------*/
+#logo {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    border: none;
+    background: url(../assets/logo.svg);
+    background-repeat: no-repeat;
+    background-size: 90% auto;
+    background-position: left center;
+    border-bottom: solid 0px #00000017;
+
+}
+
+/*--------------------------------------------------------------*
+ *  3.2  Sidebar navigation
+ *--------------------------------------------------------------*/
+.w3-sidebar h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    letter-spacing: 2px;
+    margin-top: 40px;
+    color: #42bdc1;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.w3-bar-block .w3-bar-item {
+    width: 100%;
+    padding: 9px 20px;
+    font-size: 20px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    transition: all 0.5s;
+}
+
+.w3-bar-block .w3-bar-item .menu-icon {
+    color: #cbd9e6;
+}
+
+.text {
+    font-size: 0.68em;
+    display: inline;
+    vertical-align: middle;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 5px 19px;
+}
+
+#menu-item-selected, .color-gradient:hover {
+    background: #edf2fe !important;
+    color: #508af9 !important;
+}
+
+/*--------------------------------------------------------------*
+ *  3.2.1  Navigation > Current user
+ *--------------------------------------------------------------*/
+.current-user {
+    cursor: default !important;
+}
+
+.current-user:hover {
+    color: #82829c !important;
+    background: transparent !important;
+}
+
+.current-user .text {
+    padding: 5px 10px;
+}
+
+.user-avatar-img {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: -7px;
+    margin-bottom: -8px;
+    display: inline-block;
+    background-size: 130% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('https://profile.actionsprout.com/default.jpeg');
+    border: solid 0px #00000017;
+    border-radius: 100%;
+}
+
+/*--------------------------------------------------------------*
+ *  3.3 Sidebar Copyright
+ *--------------------------------------------------------------*/
+.copyright {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 40px 20px 15px 20px;
+    text-align: center;
+    font-size: 10px;
+}
+
+/*--------------------------------------------------------------*
+ *
+ *  4.  Teal
+ *
+ *--------------------------------------------------------------*/
+.w3-teal, .w3-hover-teal:hover {
+    position: fixed;
+    width: calc(100% - 200px);
+    background: #fff !important;
+    color: #272938 !important;
+    border: none;
+    border-bottom: solid 1px #e0e7ef;
+    border-right: solid 1px #e0e7ef;
+    height: 60px;
+    line-height: 60px;
+    padding-left: 10px;
+    transition: top 0.5s;
+    z-index: 8;
+}
+
+.w3-teal h1 {
+    display: inline;
+    font-size: 25px;
+    line-height:60px;
+    margin: 0;
+    padding: 0;
+}
+
+#open-menu {
+    background: transparent !important;
+    border: none;
+    width: 40px;
+    height: 60px;
+    padding: 0;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+#open-menu:hover {
+    color: #508af9 !important;
+}
+
+
+/*--------------------------------------------------------------*
+ *
+ *  5.  Main
+ *
+ *--------------------------------------------------------------*/
+.w3-main {
+    border-right: solid 1px #e0e7ef;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+}
+
+/*--------------------------------------------------------------*
+ * 5.0 Container
+ *--------------------------------------------------------------*/
+.w3-container {
+    background: #f8fafb !important;
+    z-index: 1;
+    color: #82819f;
+    width: 100% !important;
+    min-height: 100vh !important;
+}
+
+#standard {
+    padding: 61px 0 0 0;
+    float: left;
+}
+
+#log-reg {
+    padding: 0;
+    float: left;
+}
+
+/*--------------------------------------------------------------*
+ * 5.1 Card
+ *--------------------------------------------------------------*/
+.card-main {
+    transition: 0.3s;
+    width: 100%;
+    height: 100px;
+    display: table;
+    background: #f8fafb;
+}
+
+.card-main .img {
+    width: 80px;
+    margin: 10px;
+    position: relative;
+    height: 80px;
+    float: left;
+    background-size: cover !important;
+    background-position: center center;
+    display: table-column;
+    border-radius: 100%;
+}
+
+.card-main .item-container {
+    width: calc(100% - 160px);
+    height: 100px;
+    position: relative;
+    float: left;
+    padding: 10px 16px;
+    display: table-column;
+    border-bottom: solid 1px #e0e8ef;
+}
+
+.card-main .item-container h4 {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.card-main .item-container p {
+    font-size: 12px;
+    white-space: nowrap;
+    color: #b0b0c4;
+}
+
+.card-main .meta {
+    width: 60px;
+    height: 100px;
+    position: relative;
+    float: right;
+    text-align: center;
+    display: table-column;
+    background-image: linear-gradient(to left, #f8fafb, transparent);
+    border-bottom: solid 1px #e0e8ef;
+    padding-bottom: 20px;
+}
+
+.card-main .meta p {
+    font-size: 12px;
+}
+
+.card-main .meta .new-message {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: -10px;
+    background: #508af9;
+    border-radius: 100%;
+}
+
+.card-main .meta .new-message p {
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-weight: 900;
+}
+
+
+/*--------------------------------------------------------------*
+ * 5.2 Background page
+ *--------------------------------------------------------------*/
+.background-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    overflow-x: hidden;
+    text-align: center;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+/*--------------------------------------------------------------*
+ * 5.3 Login/Registration page
+ *--------------------------------------------------------------*/
+#login-page {
+    background: url('../assets/login-bg.svg');
+}
+
+.login-form {
+    position: relative;
+    width: calc(100% - 20px);
+    max-width: 450px;
+    margin: 10px;
+    height: auto;
+    min-height: 300px;
+    background: #fff;
+    border: solid 1px #e0e8ef;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+
+/*--------------------------------------------------------------*
+ *
+ *  6.  Contacts
+ *
+ *--------------------------------------------------------------*/
+.container-contacts{
+    width: calc(100% - 100px)!important;
+}
+
+.button-contacts {
+    float: right;
+    display: inline-block;
+    position: relative;
+    top:27%;
+}
+
+.h4-contacts {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0;
+}
+
+
+.button-contacts .btn-add{
+    background:#508af9!important;
+}
+
+.select_user_checkbox{
+    float:right;
+    margin-right: 30px;
+    margin-top: 25px;
+    width: 30px;
+    height: 30px;
+}
+
+/*--------------------------------------------------------------*
+ *
+ *  7.  Chat page
+ *
+ *--------------------------------------------------------------*/
+#chat-page {
+    height: calc(100vh - 122px);
+}
+
+#input-bar {
+    width: calc(100% - 200px);
+    height: 61px;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: solid 1px #e0e8ef;
+}
+
+#teal-user-list{
+    display: inline-block;
+    font-size: 11px;
+}
+
+.chat-container{
+    position: relative;
+    width: 100%;
+    height:calc(100vh - 122px);
+    margin: 0 0 61px 0;
+    background: url("../assets/chat-bg.svg");
+    overflow-y: scroll;
+}
+
+
+.chat-send-btn{
+    font-size: 20px;
+    width:50px;
+    height:50px;
+    margin: 5px;
+    border-radius: 100% !important;
+}
+
+.message-row{
+    position: relative;
+    width: 100%;
+    min-width:150px;
+    min-height: 100px;
+    height: auto;
+    display: table;
+}
+
+.message-row .message-container{
+    width: auto;
+    max-width: 100%;
+    min-width: 400px;
+    height: auto;
+    min-height: 100px;
+    margin:10px;
+    display: table-cell;
+    border: solid 1px rgba(0, 0, 0, 0.04);
+    border-radius:10px;
+    padding: 15px;
+}
+
+.message-row .message-container.user{
+    float: left;
+    background: #edf2fe;
+}
+
+.triangle-left {
+    position: absolute;
+    margin-top:10px;
+    width: 0;
+    height: 0;
+    border-top: 0px solid transparent;
+    border-right: 20px solid #edf2fe;
+    border-bottom: 20px solid transparent;
+}
+
+.triangle-right {
+    position: absolute;
+    margin-top:10px;
+    width: 0;
+    height: 0;
+    right: 0;
+    border-top: 0px solid transparent;
+    border-left: 20px solid #e1feff;
+    border-bottom: 20px solid transparent;
+}
+
+.message-row .message-container.other{
+    float: right;
+    background: #e1feff;
+}
+
+.mex-title{
+    color: #272938;
+}
+
+.mex-body{
+    font-size: 14px;
+}
+
+#btn-teal{
+    height: 60px;
+    margin: -16px 0 0 0;
+    border-radius: 0px;
+
+}
+
+#new-group-bottom-btn{
+    margin: -16px 0 0 0;
+    width:120px;
+    height:60px;
+    border-radius:0px
+}
+
+/*--------------------------------------------------------------*
+ *
+ *  8.  Responsive
+ *
+ *--------------------------------------------------------------*/
+@media only screen and (max-width: 992px) {
+    #standard {
+        width: 100%;
+        border-right: none;
+    }
+
+    #input-bar {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .w3-teal, .w3-hover-teal:hover {
+        width: 100%;
+    }
+
+    .w3-teal h1 {
+        margin-left: 60px;
+    }
+
+    #teal-user-list{
+    display: none;
+    }
+}

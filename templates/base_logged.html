@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!--set navigation-->
+ {% block navigation %}
+     <!--account section-->
+     <h2 style="margin-top:10px">Account:</h2>
+     <div href="#" class="w3-bar-item w3-button current-user"><i class="user-avatar-img menu-icon"></i><div class="text">{{ user.username }}</div></div>
+     <a href="#" id="menu-logout" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'logout' %}'; w3_close()"><i class="fa fa-sign-out  menu-icon"></i><div class="text">Logout</div></a>
+
+     <!--chat section-->
+     <h2>Chat:</h2>
+     <a href="#" id="menu-privatechats" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'profile' %}'; w3_close()"><i class="fa fa-location-arrow menu-icon" ></i><div class="text">Direct chats</div></a>
+     <a href="#" id="menu-groupchats" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'group_chat' %}'; w3_close()"><i class="fa fa-comments menu-icon" ></i><div class="text">Group chats</div></a>
+     <a href="#" id="menu-newchat" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'new_chat' %}'; w3_close()"><i class="fa fa-plus  menu-icon"></i><div class="text">New chat</div></a>
+     <a href="#" id="menu-newgroup" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'new_group_chat' %}'; w3_close()"><i class="fa fa-plus  menu-icon"></i><div class="text">New group</div></a>
+
+     <!--contact section-->
+     <h2>Contacts:</h2>
+     <a href="#" id="menu-contacts" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'contacts' %}'; w3_close()"><i class="fa fa-users  menu-icon"></i><div class="text">Your contacts</div></a>
+     <a href="#" id="menu-newcontact" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'addable_contacts' %}'; w3_close()"><i class="fa fa-user-plus  menu-icon"></i><div class="text">Add new</div></a>
+
+ {% endblock navigation %}
+
+<!--set main container background-->
+{% block site %}
+    <!--topbar with activity title-->
+    <div class="w3-teal" id="appbar">
+
+        <!--hamburger for open/close menu (responsive only)-->
+        <button class="w3-button w3-teal w3-xlarge w3-hide-large" id="open-menu" onclick="w3_open()">&#9776;</button>
+        <!--end hamburger-->
+
+        <!--activity title-->
+        <h1>{% block activity_title %}[ACTIVITY_NAME]{% endblock activity_title %}</h1>
+        <!--end activity title-->
+
+    </div>
+    <!--end topbar-->
+
+    <!--main container-->
+    <div class="w3-container" id="standard" onclick="w3_close()">
+        {% block main_container %}{% endblock main_container %}
+    </div>
+    <!--main container end-->
+
+{% endblock site %}
+

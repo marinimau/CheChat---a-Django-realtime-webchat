@@ -1,0 +1,28 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}CheChat - New Chat{% endblock title %}
+{% block activity_title %}New private chat{% endblock activity_title %}
+{% block current_page_menu %}menu-newchat{% endblock current_page_menu %}
+
+{% block main_container %}
+    {% if len_addable == 0 %}
+        <h4 style="margin:20px">There are no contacts. Click on 'Add New'.</h4>
+    {% endif %}
+
+    {% for user in users %}
+        <form action='/create_chat/' method="post">
+            <div class="card-main">
+                <div class="img" style="background:url(https://profile.actionsprout.com/default.jpeg)"></div>
+                <div class="item-container container-contacts">
+                    <h4 class="h4-contacts">
+                        <b>{{ user.username }}</b>
+                        <input type="hidden" name="other_username" value="{{ user.username }}">
+                        {% csrf_token %}
+                    </h4>
+                    <button class="btn btn-primary button-contacts" type="submit">Chat</button>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+
+{% endblock main_container %}

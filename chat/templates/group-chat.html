@@ -1,0 +1,177 @@
+{% extends 'base_logged.html' %}
+
+{% block current_page_menu %}menu-groupchats{% endblock current_page_menu %}
+{% block title %}Chat gruppo {{ group_chat.channel_name }} {% endblock title %}
+{% block activity_title %}
+    {{ group_chat.channel_name }}
+    <p id="teal-user-list">
+        {% for partecipant in partecipants %}
+            {{ partecipant.username }}
+        {% endfor %}
+    </p>
+    <form action="/add_partecipants/" method="post"
+          style="display: inline-block; float:right; position: relative; top:15px">
+        <input type="hidden" value="{{ group_chat.id_chat }}" name="id_chat" id="id_chat">
+
+        <button class="btn btn-primary button-contacts" id="btn-teal" type="submit">
+            Add participant
+        </button>
+        {% csrf_token %}
+    </form>
+{% endblock activity_title %}
+
+{% block single_page_head %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
+            integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
+            crossorigin="anonymous"></script>
+    <script>
+        // wait for the DOM to be loaded
+        $(function () {
+            // bind 'myForm' and provide a simple callback function
+            if ('#')
+                $('#send-message-form').ajaxForm(function () {
+                    console.log("messaggio inviato");
+                    $('#text-message-input').val("");
+                });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            updateChat();
+
+            function updateChat() {
+                var id_chat = $('#id_chat').val();
+
+                $.ajaxSetup({
+                    beforeSend: function (xhr, settings) {
+                        function getCookie(name) {
+                            var cookieValue = null;
+                            if (document.cookie && document.cookie != '') {
+                                var cookies = document.cookie.split(';');
+                                for (var i = 0; i < cookies.length; i++) {
+                                    var cookie = jQuery.trim(cookies[i]);
+                                    // Does this cookie string begin with the name we want?
+                                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                        break;
+                                    }
+                                }
+                            }
+                            return cookieValue;
+                        }
+
+                        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                            // Only send the token to relative URLs i.e. locally.
+                            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                        }
+                    }
+                });
+
+                $.ajax({
+                    url: "/get_group_chat_messages/",
+                    dataType: 'json',
+                    data: {'id_chat': id_chat},
+                    method: 'POST',
+                    success: function (return_value) {
+                        var container = document.getElementById("chat_container");
+                        container.innerHTML = "";
+                        var page_content = "";
+                        return_value.forEach(function (message) {
+                            if (message.username == "{{ user.username }}") {
+                                page_content += "<div class=\"message-row\">";
+                                page_content += "<div class=\"triangle-right\"></div>";
+                                page_content += "<div class=\"message-container other\">";
+                                page_content += "<p><b class=\"mex-title\">";
+                                page_content += message.username;
+                                page_content += "</b> -";
+                                page_content += message.timestamp + "</p>";
+                                page_content += "<p class=\"mex-body\">" + message.text + "</p>";
+                                page_content += "</div>";
+                                page_content += "</div>";
+                            }else{
+                                page_content += "<div class=\"message-row\">";
+                                page_content += "<div class=\"triangle-left\"></div>";
+                                page_content += "<div class=\"message-container user\">";
+                                page_content += "<p><b class=\"mex-title\">";
+                                page_content += message.username;
+                                page_content += "</b> -";
+                                page_content += message.timestamp + "</p>";
+                                page_content += "<p class=\"mex-body\">" + message.text + "</p>";
+                                page_content += "</div>";
+                                page_content += "</div>";
+                            }
+
+                        });
+
+                        container.innerHTML = page_content;
+
+                    },
+                    error: function () {
+                        console.log("Error");
+                    }
+                });
+
+            }
+
+            setInterval(updateChat, 500);
+
+        });
+    </script>
+
+{% endblock single_page_head %}
+
+{% block main_container %}
+
+    <div class="chat-container" id="chat_container">
+        {% for message in messages %}
+            {% if message.sender == user %}
+                <!--
+                   messaggio cevuto
+               -->
+                <div class="message-row">
+                    <div class="triangle-right"></div>
+                    <div class="message-container other">
+                        <p><b class="mex-title">{{ message.sender }}</b> - {{ message.timestamp }}</p>
+                        <p class="mex-body">{{ message.text }}</p>
+                    </div>
+                </div>
+                <!--
+                  fine messaggio ricevuto
+              -->
+            {% else %}
+                <!--
+                   messaggio inviato
+               -->
+                <div class="message-row">
+                    <div class="triangle-left"></div>
+                    <div class="message-container user">
+                        <p><b class="mex-title">{{ message.sender }}</b> - {{ message.timestamp }}</p>
+                        <p class="mex-body">{{ message.text }}</p>
+                    </div>
+                </div>
+                <!--
+                  fine messaggio inviato
+              -->
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <form id="send-message-form" method="post" action="/send_message/">
+        {% csrf_token %}
+        <input type="hidden" name="id_chat" value="{{ group_chat.id_chat }}">
+        <div id="input-bar" style="display: inline-flex;">
+            <div style="flex-grow: 100">
+                <input type="text"
+                       name="text-message-input"
+                       id="text-message-input"
+                       style="width:100%; height: 100%; border: none; font-size: 20px; padding: 20px;"
+                       placeholder="Your message...">
+            </div>
+            <div style="float: right;">
+                <button type="submit" class="btn-primary btn chat-send-btn">&#x27A4</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock main_container %}

@@ -1,0 +1,12 @@
+{% extends 'base_prelogin.html' %}
+{% block title %}CheChat{% endblock title %}
+{% block login_page_container %}
+    <fieldset class="form-group">
+        <legend>You have been logged out!</legend>
+    </fieldset>
+    <div>
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+{% endblock login_page_container %}

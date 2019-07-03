@@ -1,0 +1,24 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}CheChat - Chats{% endblock title %}
+{% block activity_title %}All chats{% endblock activity_title %}
+{% block current_page_menu %}menu-allchats{% endblock current_page_menu %}
+
+{% block main_container %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+        <div>
+            <button onclick="window.location.href='{% url 'contacts' %}'">Nuova Chat</button>
+            <button onclick="window.location.href='{% url 'contacts' %}'">Rubrica</button>
+            <button onclick="window.location.href='{% url 'contacts' %}'">Nuovo Gruppo</button>
+            <button onclick="window.location.href='{% url 'logout' %}'">Logout</button>
+        </div>
+      <!-- FORM HERE -->
+    </div>
+{% endblock main_container %}

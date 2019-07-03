@@ -1,0 +1,29 @@
+{% extends 'base_logged.html' %}
+
+{% block title %}CheChat - Group Chats{% endblock title %}
+{% block activity_title %}Group chats{% endblock activity_title %}
+{% block current_page_menu %}menu-groupchats{% endblock current_page_menu %}
+
+{% block main_container %}
+    {% if len_chats == 0 %}
+        <h4 style="margin:20px">There are no active chats.</h4>
+    {% endif %}
+
+    {% for group_chat in group_chats %}
+        <form name="begin_chat{{ group_chat.id_chat }}" action='/group_chat_page/' method="post" style="cursor:pointer">
+            <div class="card-main" onclick="document.forms['begin_chat{{ group_chat.id_chat }}'].submit();">
+                <div class="img" style="background:url(https://profile.actionsprout.com/default.jpeg)"></div>
+                <div class="item-container container-contacts">
+                    <h4 class="h4-contacts">
+                        <b>
+                            {{ group_chat.channel_name }}
+                        </b>
+                        <input type="hidden" name="id_chat" value="{{ group_chat.id_chat }}">
+                        {% csrf_token %}
+                    </h4>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+
+{% endblock main_container %}

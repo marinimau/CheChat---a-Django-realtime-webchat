@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<!--set navigation-->
+ {% block navigation %}
+     <!--menu li to login page-->
+     <a href="#" id="menu-login" class="w3-bar-item w3-button color-gradient" onclick="window.location.href='{% url 'login' %}'; w3_close()"><i class="fa fa-user  menu-icon"></i><div class="text">Login</div></a>
+     <!--menu li to registration page-->
+     <a href="#" id="menu-registration" class="w3-bar-item w3-button color-gradient"  onclick="window.location.href='{% url 'register' %}'; w3_close()"><i class="fa fa-user  menu-icon"></i><div class="text">Registration</div></a>
+ {% endblock navigation %}
+
+<!--set main container background-->
+{% block site %}
+
+    <!--hamburger for open/close menu (responsive only)-->
+    <button class="w3-button w3-teal w3-xlarge w3-hide-large" id="open-menu" onclick="w3_open()">&#9776;</button>
+    <!--end hamburger-->
+
+    <!--main container-->
+    <div class="w3-container" id="log-reg" onclick="w3_close()">
+        {% block main_container %}
+            <div class="background-page" id="login-page">
+                <div class="login-form">
+                    <!--put the login (or registration) form inside this block-->
+                    {% block login_page_container %}{% endblock login_page_container %}
+                </div>
+            </div>
+        {% endblock main_container %}
+    </div>
+    <!--main container end-->
+
+{% endblock site %}

@@ -1,0 +1,26 @@
+{% extends 'base_prelogin.html' %}
+
+{% block title %}CheChat - Registration{% endblock title %}
+{% block activity_title %}Registration{% endblock activity_title %}
+{% block current_page_menu %}menu-registration{% endblock current_page_menu %}
+
+
+{% block login_page_container %}
+    <div class="content-section">
+       <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Join Today!</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div>
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock login_page_container %}
