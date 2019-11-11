@@ -1,8 +1,7 @@
 # CheChat
-A Python webchat realtime webchat.
+A Python realtime webchat.
 
 ![alt text](https://cdn.discordapp.com/attachments/595665522562039810/643359911778058241/Schermata_2019-11-11_alle_08.51.10.png)
-python webchat
 
 ## Features
 1) User management
