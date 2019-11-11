@@ -12,7 +12,7 @@ A Python realtime webchat.
 
 ## Screenshots
 
-![alt text](https://cdn.discordapp.com/attachments/595665522562039810/643359911778058241/Schermata_2019-11-11_alle_08.51.10.png)
+![alt text](https://cdn.discordapp.com/attachments/595665522562039810/643386131169411072/IMG_20191111_104557.jpg)
 
 
 ## Contributing
